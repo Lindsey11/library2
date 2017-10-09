@@ -1,0 +1,37 @@
+<p>
+  <strong>Author:</strong>
+  <%= @author.author %>
+</p>
+
+<h2>Books belonging to this author</h2>
+<% @author.books.each do |book| %>
+  <p>
+    <strong>TITLE:</strong>
+    <%= book.name %>
+  </p>
+ 
+  <p>
+    <strong>CATAGORY:</strong>
+    <%= book.catagory %>
+  </p>
+<% end %>
+
+
+<h2>Add the TITLE and the CATAGORY of the book below:</h2>
+<%= form_for([@author, @author.books.build]) do |f| %>
+  <p>
+    <%= f.label :Title %><br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :Catagory %><br>
+    <%= f.text_field :catagory %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+
+  
+<% end %>
+<%= link_to 'Edit', edit_author_path(@author) %>
+<%= link_to 'Back', authors_path %>
